@@ -7,6 +7,8 @@
     "test": "test"
   },
   "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +22,22 @@
     "url": "https://github.com/fac27/Haiku/issues"
   },
   "homepage": "https://github.com/fac27/Haiku#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
   "devDependencies": {
-    "express": "^4.18.2"
+    "eslint": "^8.22.0",
+    "nodemon": "^2.0.19"
+  },
+  "volta": {
+    "node": "18.16.0"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "commonjs": true,
+      "es2021": true,
+      "node": true
+    }
   }
 }

@@ -1,5 +1,5 @@
 const express = require("express");
-// const { homePage } = require("./templates.js"); // this line is assuming a path to templates.js and requiring the code exported by Beth & Simon
+const { home } = require("./template.js"); 
 const server = express();
 const bodyParser = express.urlencoded();
 
@@ -8,7 +8,7 @@ const bodyParser = express.urlencoded();
 
 // HOME PAGE ////////////////////
 server.get("/home", (req, res) => {
-  const pageBody = /*html*/ `<h1>Haiku</h1>`; //replace with a callback to templates.js
+  const pageBody = home();
   res.send(pageBody);
 });
 
@@ -24,7 +24,7 @@ server.post("/home", bodyParser, (req, res) => {
   const poet = req.body.poet; //review name against templates.js
   const timeStamp = Date.now();
 
-  res.redirect("/home");
+  res.redirect("/read");
 });
 
 // exports ////////////////////////
