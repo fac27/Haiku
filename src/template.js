@@ -74,4 +74,19 @@ function postHaiku(haikuPost) {
   `;
 }
 
-module.exports = { home, haikuBoard };
+function validate(dataSubmitted) {
+  const alertMessage = "Field cannot be empty";
+
+  return dataSubmitted === "" ? alertMessage : dataSubmitted;
+}
+
+function sanitise(dirtyData) {
+  let unsafeData = {
+    "<": "&lt;",
+    ">": "&gt;",
+  };
+
+  return dirtyData.replace(/<|>/g, (matched) => unsafeData[matched]);
+}
+
+module.exports = { home, haikuBoard, validate, sanitise };

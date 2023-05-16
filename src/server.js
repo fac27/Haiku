@@ -13,6 +13,10 @@ server.get("/home", (req, res) => {
   res.send(pageBody);
 });
 
+server.get("/", (req, res) => {
+  res.redirect("/home");
+});
+
 // VIEW SUBMITIONS /////////////
 server.get("/read", (req, res) => {
   const pageBody = haikuBoard(haikus); //replace with a callback to templates.js
