@@ -12,9 +12,15 @@ node --version
 ```
 npm --version
 ```
+Clone the repo and make sure you're within the folder before running the following command in the terminal
 ```
-npm list express
+npm install
 ```
+Then to start a server, run:
+```
+npm run dev
+```
+and navigate to "http://localhost:8080/home" to view the site.
 
 ## Usage
 
