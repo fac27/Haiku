@@ -1,5 +1,5 @@
 function home() {
-  const homePage = /*HTML*/ `
+  return /*HTML*/ `
     <body>
   <header>
       <img> 
@@ -34,7 +34,44 @@ function home() {
   </main>
 </body>
 `;
-return homePage;
 }
 
-module.exports = { home };
+function haikuBoard(haikus) {
+  return /*HTML*/ `
+  <body>
+    <header>
+        <img> 
+        <h1>Haiku board</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Haiku library</h2>
+                <ul>
+                    ${haikus.map(postHaiku).join("")}
+                </ul>
+        </section>
+            <section>
+                <h2>Feeling inspired?</h2>
+                  <figure>
+                    <button>
+                      <img/>
+                    </button>
+                    <figcaption>Write a haiku</figcaption>
+                  </figure>
+              </section>
+    </main>
+</body>
+  `;
+}
+
+function postHaiku(haikuPost) {
+  return /*HTML*/ `
+  <li>
+    <p>${haikuPost.haiku}</p>
+    <p>${haikuPost.poet}</p>
+    <p>${haikuPost.timeStamp}</p>
+  </li>
+  `;
+}
+
+module.exports = { home, haikuBoard };
