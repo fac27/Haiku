@@ -1,5 +1,5 @@
 function home() {
-   const homePage = /*HTML*/ `
+  const homePage = /*HTML*/ `
     <body>
   <header>
       <img> 
@@ -25,15 +25,15 @@ function home() {
       <section>
         <form method="POST">
           <label>Enter your Haiku</label>
-          <input type="textarea">
-          <label>Name</label>
-          <input type="text">
+          <input type="textarea" name="haiku">
+          <label>Poet's name</label>
+          <input type="text" name="poet">
           <button type="submit"><img></button>
         </form>
       </section>
   </main>
 </body>
-`
+`;
 }
 
 module.exports = { home };
