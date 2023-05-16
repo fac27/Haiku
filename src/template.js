@@ -1,4 +1,4 @@
-function home() {
+function home(errors = {}) {
   return /*HTML*/ `
     <body>
   <header>
@@ -25,9 +25,17 @@ function home() {
       <section>
         <form method="POST">
           <label>Enter your Haiku</label>
-          <input type="textarea" name="haiku">
+          <input 
+          type="textarea" 
+          name="haiku" 
+          value=${errors.haiku ? errors.haiku : ""}
+          >
           <label>Poet's name</label>
-          <input type="text" name="poet">
+          <input 
+          type="text" 
+          name="poet" 
+          value= ${errors.poet ? errors.poet : ""}
+          >
           <button type="submit"><img></button>
         </form>
       </section>
@@ -74,10 +82,10 @@ function postHaiku(haikuPost) {
   `;
 }
 
-function validate(dataSubmitted) {
-  const alertMessage = "Field cannot be empty";
+function isValidData(dataSubmitted) {
+  // const alertMessage = "Field cannot be empty";
 
-  return dataSubmitted === "" ? alertMessage : dataSubmitted;
+  return dataSubmitted === "" ? false : true;
 }
 
 function sanitise(dirtyData) {
@@ -89,4 +97,4 @@ function sanitise(dirtyData) {
   return dirtyData.replace(/<|>/g, (matched) => unsafeData[matched]);
 }
 
-module.exports = { home, haikuBoard, validate, sanitise };
+module.exports = { home, haikuBoard, isValidData, sanitise };
