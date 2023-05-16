@@ -1,5 +1,5 @@
 const express = require("express");
-const { home } = require("./template.js"); 
+const { home } = require("./template.js");
 const server = express();
 const bodyParser = express.urlencoded();
 
@@ -10,6 +10,10 @@ const bodyParser = express.urlencoded();
 server.get("/home", (req, res) => {
   const pageBody = home();
   res.send(pageBody);
+});
+
+server.get("/", (req, res) => {
+  res.redirect("/home");
 });
 
 // VIEW SUBMITIONS /////////////
