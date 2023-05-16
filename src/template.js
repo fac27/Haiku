@@ -13,10 +13,12 @@ function home(errors = {}) {
       <section class="linkbox-read">
         <h2>Looking for inspiration?</h2>
           <figure>
-            <button type="button" class="button-circle">
-              <img src="/assets/icon-read.png" alt="An icon showing a book" class="icon-button">
-            </button>
-            <figcaption class="text-general">Read haikus</figcaption>
+            <form action="/read" method="GET">
+              <button type="submit">
+                <img/>
+              </button>
+            </form>
+            <figcaption>Read haikus</figcaption>
           </figure>
       </section>
       <section class="infobox-haikus">
@@ -74,9 +76,11 @@ function haikuBoard(haikus) {
             <section>
                 <h2>Feeling inspired?</h2>
                   <figure>
-                    <button>
-                      <img/>
-                    </button>
+                    <form action="/home" method="GET">
+                      <button type="submit">
+                        <img/>
+                      </button>
+                    </form>
                     <figcaption>Write a haiku</figcaption>
                   </figure>
               </section>
