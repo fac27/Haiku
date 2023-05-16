@@ -34,6 +34,7 @@ function home() {
   </main>
 </body>
 `;
+return homePage;
 }
 
 module.exports = { home };
