@@ -1,4 +1,4 @@
-function home() {
+function home(errors = {}) {
   return /*HTML*/ `
   <head>
   <link rel="stylesheet" href="/styles.css">
@@ -26,13 +26,29 @@ function home() {
           a cricket, singing.
           </p>
       </section>
-      <section class="form-haikus stack-sm">
-        <form method="POST" class="column">
-          <label for="haikuInput" class="text-general">Enter your Haiku</label>
-          <textarea id="haikuInput" name="haiku" rows="4" cols="30"></textarea>
-          <label for="poetName" class="text-general">Poet's name</label>
-          <input type="text" id="poetName" name="poet">
-          <button type="submit" class="button-circle"><img src="/assets/icon-submit.png" alt="An icon showing a writing being submitted" class="icon-button"></button>
+      <section>
+        <form method="POST">
+          <label>Enter your Haiku</label>
+          <textarea 
+          name="haiku"
+          rows="4"
+          cols="30"
+          value=${errors.haiku ? errors.haiku : ""}
+          >
+          </textarea>
+          <label>Poet's name</label>
+          <input 
+          type="text" 
+          name="poet" 
+          value= ${errors.poet ? errors.poet : ""}
+          >
+          <button type="submit" class="button-circle">
+            <img 
+            src="/assets/icon-submit.png" 
+            alt="An icon showing a writing being submitted" 
+            class="icon-button"
+            >
+          </button>
         </form>
       </section>
   </main>
@@ -79,4 +95,19 @@ function postHaiku(haikuPost) {
   `;
 }
 
-module.exports = { home, haikuBoard };
+function isValidData(dataSubmitted) {
+  // const alertMessage = "Field cannot be empty";
+
+  return dataSubmitted === "" ? false : true;
+}
+
+function sanitise(dirtyData) {
+  let unsafeData = {
+    "<": "&lt;",
+    ">": "&gt;",
+  };
+
+  return dirtyData.replace(/<|>/g, (matched) => unsafeData[matched]);
+}
+
+module.exports = { home, haikuBoard, isValidData, sanitise };

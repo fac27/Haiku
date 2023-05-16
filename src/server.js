@@ -1,5 +1,5 @@
 const express = require("express");
-const { home } = require("./template.js");
+const { home, haikuBoard, isValidData, sanitise } = require("./template.js");
 const server = express();
 const bodyParser = express.urlencoded();
 server.use(express.static("public"));
@@ -13,19 +13,33 @@ server.get("/home", (req, res) => {
   res.send(pageBody);
 });
 
+server.get("/", (req, res) => {
+  res.redirect("/home");
+});
+
 // VIEW SUBMITIONS /////////////
 server.get("/read", (req, res) => {
-  const pageBody = /*html*/ `<ul><li>One Haiku</li><li>Two Haiku</li></ul>`; //replace with a callback to templates.js
+  const pageBody = haikuBoard(haikus); //replace with a callback to templates.js
   res.send(pageBody);
 });
 
 // SUBMIT A HAIKU /////////////
+const haikus = [];
+const errors = {};
+
 server.post("/home", bodyParser, (req, res) => {
-  const haiku = req.body.haiku; //review name against templates.js
-  const poet = req.body.poet; //review name against templates.js
+  const haiku = sanitise(req.body.haiku);
+  const poet = sanitise(req.body.poet);
   const timeStamp = Date.now();
 
-  res.redirect("/read");
+  if (isValidData(haiku) && isValidData(poet)) {
+    haikus.push({ haiku, poet, timeStamp });
+    res.redirect("/home");
+  } else {
+    if (!isValidData(haiku)) errors.haiku = "Field cannot be empty";
+    if (!isValidData(poet)) errors.poet = "Field cannot be empty";
+    res.send(home(errors));
+  }
 });
 
 // exports ////////////////////////
