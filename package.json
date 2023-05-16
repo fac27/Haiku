@@ -1,0 +1,26 @@
+{
+  "name": "haiku",
+  "version": "1.0.0",
+  "description": "Post your Haikus",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fac27/Haiku.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fac27/Haiku/issues"
+  },
+  "homepage": "https://github.com/fac27/Haiku#readme",
+  "devDependencies": {
+    "express": "^4.18.2"
+  }
+}
