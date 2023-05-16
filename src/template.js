@@ -1,23 +1,27 @@
 function home(errors = {}) {
   return /*HTML*/ `
-    <body>
+  <head>
+  <link rel="stylesheet" href="/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
   <header>
-      <img> 
-      <h1>Haiku board</h1>
+      <img src="/assets/logo-demo.JPG" alt="A logo which says Haiku Daily" class="logo-header"> 
+      <h1 class="heading-main hidden">Haiku board</h1>
   </header>
-  <main>
-      <section>
+  <main class="grid-container">
+      <section class="linkbox-read">
         <h2>Looking for inspiration?</h2>
           <figure>
-            <button>
-              <img/>
+            <button type="button" class="button-circle">
+              <img src="/assets/icon-read.png" alt="An icon showing a book" class="icon-button">
             </button>
-            <figcaption>Read haikus</figcaption>
+            <figcaption class="text-general">Read haikus</figcaption>
           </figure>
       </section>
-      <section>
-        <p>A haiku is a Japanese verse form most often composed, in English versions, of three unrhymed lines of five, seven, and five syllables. It often features an image, or a pair of images, meant to depict the essence of a specific moment in time.</p>
-        <p> On a bobbing branch <br>
+      <section class="infobox-haikus">
+        <p class="text-general">A haiku is a Japanese verse form most often composed, in English versions, of three unrhymed lines of five, seven, and five syllables. It often features an image, or a pair of images, meant to depict the essence of a specific moment in time.</p>
+        <p class="text-general haiku"> On a bobbing branch <br>
           floating slowly downriver <br>
           a cricket, singing.
           </p>
@@ -25,18 +29,26 @@ function home(errors = {}) {
       <section>
         <form method="POST">
           <label>Enter your Haiku</label>
-          <input 
-          type="textarea" 
-          name="haiku" 
+          <textarea 
+          name="haiku"
+          rows="4"
+          cols="30"
           value=${errors.haiku ? errors.haiku : ""}
           >
+          </textarea>
           <label>Poet's name</label>
           <input 
           type="text" 
           name="poet" 
           value= ${errors.poet ? errors.poet : ""}
           >
-          <button type="submit"><img></button>
+          <button type="submit" class="button-circle">
+            <img 
+            src="/assets/icon-submit.png" 
+            alt="An icon showing a writing being submitted" 
+            class="icon-button"
+            >
+          </button>
         </form>
       </section>
   </main>
@@ -47,6 +59,7 @@ function home(errors = {}) {
 function haikuBoard(haikus) {
   return /*HTML*/ `
   <body>
+  <link rel="stylesheet" href="/styles.css">
     <header>
         <img> 
         <h1>Haiku board</h1>

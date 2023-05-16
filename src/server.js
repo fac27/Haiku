@@ -2,6 +2,7 @@ const express = require("express");
 const { home, haikuBoard, isValidData, sanitise } = require("./template.js");
 const server = express();
 const bodyParser = express.urlencoded();
+server.use(express.static("public"));
 
 // routes //////////////////////////
 ///////////////////////////////////
