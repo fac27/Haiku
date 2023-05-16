@@ -13,6 +13,16 @@ test("GET '/home' takes user to the home page", async () => {
   assert.equal(body, home())
 })
 
+test("GET '/read' takes user to the read page", async () => {
+  const app = server.listen(9876);
+  const response = await fetch("http://localhost:9876/read");
+  app.close();
+
+  assert.equal(response.status, 200);
+  const body = await response.text();
+  assert.match(body, /Haiku library/);
+})
+
 test('POST request submits name and message to haiku board', async () => {
   const app = server.listen(9876);
   const response = await fetch("http://localhost:9876/home", {
@@ -29,7 +39,7 @@ test('POST request submits name and message to haiku board', async () => {
   assert.match(body, /haikuExample/, /Shakespeare/); 
 })
 
-test('POST request checks empty name and message lead to 404', async () => {
+test('POST request checks empty name and message lead to a warning', async () => {
   const app = server.listen(9876);
   const response = await fetch("http://localhost:9876/home", {
     method: "POST",
@@ -40,5 +50,7 @@ test('POST request checks empty name and message lead to 404', async () => {
   });
   app.close();
 
-  assert.equal(response.status, 404);
+  assert.equal(response.status, 200);
+  const body =await response.text();
+  assert.match(body, /Field cannot be empty/)
 })
