@@ -9,9 +9,11 @@ function home(errors = {}) {
       <section>
         <h2>Looking for inspiration?</h2>
           <figure>
-            <button>
-              <img/>
-            </button>
+            <form action="/read" method="GET">
+              <button type="submit">
+                <img/>
+              </button>
+            </form>
             <figcaption>Read haikus</figcaption>
           </figure>
       </section>
@@ -61,9 +63,11 @@ function haikuBoard(haikus) {
             <section>
                 <h2>Feeling inspired?</h2>
                   <figure>
-                    <button>
-                      <img/>
-                    </button>
+                    <form action="/home" method="GET">
+                      <button type="submit">
+                        <img/>
+                      </button>
+                    </form>
                     <figcaption>Write a haiku</figcaption>
                   </figure>
               </section>
