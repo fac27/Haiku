@@ -1,6 +1,6 @@
 # Haiku
 
-An app to read and write haikus.
+An app to read and write haikus. [Deployed here](https://haiku-blog.fly.dev/home).
 
 ## Install
 
@@ -24,7 +24,7 @@ and navigate to "http://localhost:8080/home" to view the site.
 
 ## Usage
 
-Insert screenshot
+
 
 ## Roadmap
 
