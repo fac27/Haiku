@@ -32,13 +32,7 @@ server.post("/home", bodyParser, (req, res) => {
   const poet = sanitise(req.body.poet);
   const date = new Date();
   const timeStamp = date.toLocaleString("en-GB");
-//   const date = new Date();
 
-// let day = date.getDate();
-// let month = date.getMonth() + 1;
-// let year = date.getFullYear();
-
-// let timeStamp = 
 
   if (isValidData(haiku) && isValidData(poet)) {
     haikus.push({ haiku, poet, timeStamp });
