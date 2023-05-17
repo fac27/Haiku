@@ -1,21 +1,20 @@
 function home(errors = {}, values = {}) {
-  return /*HTML*/ `
-    <head>
-      <link rel="stylesheet" href="/styles.css">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-      <header>
-        <img src="/assets/logo-demo.JPG" alt="A logo which says Haiku Daily" class="logo-header"> 
-        <h1 class="heading-main hidden">Haiku board</h1>
-      </header>
-      <main class="grid-container">
-        <section class="linkbox-read">
-          <h2>Looking for inspiration?</h2>
+  const title = "Haiku Board - submit";
+  const content = /*HTML*/ `
+  <header>
+      <img src="/assets/logo-demo.JPG" alt="A logo which says Haiku Daily" class="logo-header"> 
+      <h1 class="heading-main hidden">Haiku board</h1>
+  </header>
+  <main class="grid-container">
+      <section class="linkbox-read">
+        <h2>Looking for inspiration?</h2>
           <figure>
             <form action="/read" method="GET">
               <button type="submit">
-                <img/>
+                <img 
+                src="/assets/icon-read.png" 
+                alt="An icon showing a poetry book"
+                />
               </button>
             </form>
             <figcaption>Read haikus</figcaption>
@@ -50,22 +49,23 @@ function home(errors = {}, values = {}) {
                 alt="An icon showing a writing being submitted" 
                 class="icon-button"
               >
-            </button>
-          </form>
-        </section>
-      </main>
-    </body>
-  `;
+          </button>
+        </form>
+      </section>
+  </main>
+`;
+  return layout(title, content);
 }
 
 function haikuBoard(haikus) {
-  return /*HTML*/ `
+  const title = "Haiku Board - read";
+  const content = /*HTML*/ `
   <body>
   <link rel="stylesheet" href="/styles.css">
     <header>
-        <img> 
-        <h1>Haiku board</h1>
-    </header>
+      <img src="/assets/logo-demo.JPG" alt="A logo which says Haiku Daily" class="logo-header"> 
+      <h1 class="heading-main hidden">Haiku board</h1>
+  </header>
     <main>
         <section>
             <h2>Haiku library</h2>
@@ -78,7 +78,10 @@ function haikuBoard(haikus) {
                   <figure>
                     <form action="/home" method="GET">
                       <button type="submit">
-                        <img/>
+                        <img
+                        src="/assets/icon-write.png" 
+                        alt="An icon showing a poem being written"
+                        />
                       </button>
                     </form>
                     <figcaption>Write a haiku</figcaption>
@@ -87,6 +90,7 @@ function haikuBoard(haikus) {
     </main>
 </body>
   `;
+  return layout(title, content);
 }
 
 function postHaiku(haikuPost) {
@@ -119,6 +123,19 @@ function sanitise(dirtyData) {
   };
 
   return dirtyData.replace(/<|>/g, (matched) => unsafeData[matched]);
+}
+
+function layout(title, content) {
+  return /*html*/ `
+<head>
+  <link rel="stylesheet" href="/styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>${title}</title>
+</head>
+<body>
+${content}
+</body>
+`;
 }
 
 module.exports = { home, haikuBoard, isValidData, sanitise };
