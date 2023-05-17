@@ -96,6 +96,7 @@ function haikuBoard(haikus) {
 function postHaiku(haikuPost) {
   return /*HTML*/ `
   <li>
+    <button onclick="fetch('/delete/${haikuPost.id}', { method: 'DELETE' })">X</button>
     <p>${haikuPost.haiku}</p>
     <p>${haikuPost.poet}</p>
     <p>${haikuPost.timeStamp}</p>
