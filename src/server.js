@@ -37,7 +37,7 @@ server.post("/home", bodyParser, (req, res) => {
 
   if (isValidData(haiku) && isValidData(poet)) {
     haikus.push({ haiku, poet, timeStamp });
-    res.redirect("/home");
+    res.redirect("/read");
   } else {
     if (!isValidData(haiku)) errors.haiku = "Field cannot be empty";
     if (!isValidData(poet)) errors.poet = "Field cannot be empty";
