@@ -22,6 +22,11 @@ npm run dev
 ```
 and navigate to "http://localhost:8080/home" to view the site.
 
+Run all tests with 
+```
+node --test
+```
+
 ## Usage
 
 
