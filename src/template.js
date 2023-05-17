@@ -9,8 +9,8 @@ function home(errors = {}, values = {}) {
       <section class="linkbox-read">
         <h2>Looking for inspiration?</h2>
           <figure>
-            <form action="/read" method="GET">
-              <button type="submit">
+            <form action="/read" method="GET" ariahidden="true">
+              <button type="submit" ariahidden="false" arialabel="Read submitted haikus">
                 <img 
                 src="/assets/icon-read.png" 
                 alt="An icon showing a poetry book"
@@ -29,21 +29,23 @@ function home(errors = {}, values = {}) {
         </section>
         <section>
           <form method="POST" action="/home"> <!-- Add action attribute to the form -->
-            <label>Enter your Haiku</label>
+            <label for="haiku">Enter your Haiku</label>
             <textarea 
               name="haiku"
+              id="haiku"
               rows="4"
               cols="30"
             >${values.haiku ? sanitise(values.haiku) : ""}</textarea>
             ${validation(errors.haiku)}
-            <label>Poet's name</label>
+            <label for="poet">Poet's name</label>
             <input 
               type="text" 
               name="poet"
+              id="poet"
               value="${values.poet ? sanitise(values.poet) : ""}"
             >
             ${validation(errors.poet)}
-            <button type="submit" class="button-circle">
+            <button type="submit" class="button-circle" arialabel="Submit your haiku">
               <img 
                 src="/assets/icon-submit.png" 
                 alt="An icon showing a writing being submitted" 
@@ -76,8 +78,8 @@ function haikuBoard(haikus) {
             <section>
                 <h2>Feeling inspired?</h2>
                   <figure>
-                    <form action="/home" method="GET">
-                      <button type="submit">
+                    <form action="/home" method="GET" ariahidden="true">
+                      <button type="submit" ariahidden="false" arialabel="Visit the haiku submission page">
                         <img
                         src="/assets/icon-write.png" 
                         alt="An icon showing a poem being written"
@@ -129,14 +131,16 @@ function sanitise(dirtyData) {
 
 function layout(title, content) {
   return /*html*/ `
-<head>
-  <link rel="stylesheet" href="/styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${title}</title>
-</head>
-<body>
-${content}
-</body>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${title}</title>
+  </head>
+  <body>
+    ${content}
+  </body>
+</html>
 `;
 }
 
