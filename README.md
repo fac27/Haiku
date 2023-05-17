@@ -27,9 +27,11 @@ Run all tests with
 node --test
 ```
 
-## Usage
+## Known Issues
 
+"/delete/:id request edit haikus array" test is currently failing, though the delete button itself works.
 
+CSS document is undergoing restructuring along with applying bem naming conventions.
 
 ## Roadmap
 
