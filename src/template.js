@@ -19,42 +19,43 @@ function home(errors = {}) {
             </form>
             <figcaption>Read haikus</figcaption>
           </figure>
-      </section>
-      <section class="infobox-haikus">
-        <p class="text-general">A haiku is a Japanese verse form most often composed, in English versions, of three unrhymed lines of five, seven, and five syllables. It often features an image, or a pair of images, meant to depict the essence of a specific moment in time.</p>
-        <p class="text-general haiku"> On a bobbing branch <br>
-          floating slowly downriver <br>
-          a cricket, singing.
+        </section>
+        <section class="infobox-haikus">
+          <p class="text-general">A haiku is a Japanese verse form most often composed, in English versions, of three unrhymed lines of five, seven, and five syllables. It often features an image, or a pair of images, meant to depict the essence of a specific moment in time.</p>
+          <p class="text-general haiku"> On a bobbing branch <br>
+            floating slowly downriver <br>
+            a cricket, singing.
           </p>
-      </section>
-      <section>
-        <form method="POST">
-          <label>Enter your Haiku</label>
-          <textarea 
-          name="haiku"
-          rows="4"
-          cols="30"
-          value=${errors.haiku ? errors.haiku : ""}
-          >
-          </textarea>
-          <label>Poet's name</label>
-          <input 
-          type="text" 
-          name="poet" 
-          value= ${errors.poet ? errors.poet : ""}
-          >
-          <button type="submit" class="button-circle">
-            <img 
-            src="/assets/icon-submit.png" 
-            alt="An icon showing a writing being submitted" 
-            class="icon-button"
+        </section>
+        <section>
+          <form method="POST" action="/home"> <!-- Add action attribute to the form -->
+            <label>Enter your Haiku</label>
+            <textarea 
+              name="haiku"
+              rows="4"
+              cols="30"
+            >${values.haiku ? sanitise(values.haiku) : ""}</textarea>
+            ${validation(errors.haiku)}
+            <label>Poet's name</label>
+            <input 
+              type="text" 
+              name="poet"
+              value="${values.poet ? sanitise(values.poet) : ""}"
             >
+            ${validation(errors.poet)}
+            <button type="submit" class="button-circle">
+              <img 
+                src="/assets/icon-submit.png" 
+                alt="An icon showing a writing being submitted" 
+                class="icon-button"
+              >
           </button>
         </form>
       </section>
   </main>
 `;
   return layout(title, content);
+  `;
 }
 
 function haikuBoard(haikus) {
@@ -104,9 +105,15 @@ function postHaiku(haikuPost) {
 }
 
 function isValidData(dataSubmitted) {
-  // const alertMessage = "Field cannot be empty";
-
   return dataSubmitted === "" ? false : true;
+}
+
+function validation(message) {
+  if (message) {
+    return `<span style="color: red">${message}</span>`;
+  } else {
+    return "";
+  }
 }
 
 function sanitise(dirtyData) {
