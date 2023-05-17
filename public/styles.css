@@ -1,9 +1,10 @@
 * {
   font-family: sans-serif;
+  font-size: 4vmin;
 }
 
 body {
-  background-color: rgb(7, 152, 7);
+  background-color: #eee;
 }
 
 header {
@@ -13,6 +14,10 @@ header {
 
 h1 {
   display: none;
+}
+
+h2 {
+  font-size: 1.5rem;
 }
 
 header > img {
@@ -34,6 +39,9 @@ section {
 
 figure {
   float: left;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 figure > figcaption {
@@ -84,9 +92,27 @@ form > input {
 form > button {
   margin: auto;
   margin-top: 5vmin;
+  border-radius: 50%;
 }
 
 form > * {
   border-radius: 20px;
   border: none;
+}
+
+ul {
+  border: 2px ridge #eee;
+  border-radius: 20px;
+  height: 70vmin;
+  width: 80vmin;
+  overflow: auto;
+}
+
+li {
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+* + li {
+  margin-top: 1rem;
 }
