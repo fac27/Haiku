@@ -68,7 +68,7 @@ button > img {
 }
 
 .haiku {
-  width: 50%;
+  width: 30%;
   margin: auto;
 }
 
@@ -115,4 +115,8 @@ li {
 
 * + li {
   margin-top: 1rem;
+}
+
+textarea {
+  resize: none;
 }
