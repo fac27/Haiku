@@ -91,7 +91,8 @@ function haikuBoard(haikus) {
 
 function postHaiku(haikuPost) {
   return /*HTML*/ `
-  <li>
+  <li id=${haikuPost.id}>
+    <button onclick="document.getElementById(${haikuPost.id}).remove()">X</button>
     <p>${haikuPost.haiku}</p>
     <p>${haikuPost.poet}</p>
     <p>${haikuPost.timeStamp}</p>
