@@ -1,7 +1,7 @@
 const express = require("express");
 const { home, haikuBoard, isValidData, sanitise } = require("./template.js");
 const server = express();
-const bodyParser = express.urlencoded();
+const bodyParser = express.urlencoded({ extended: true });
 server.use(express.static("public"));
 
 // routes //////////////////////////
@@ -9,7 +9,7 @@ server.use(express.static("public"));
 
 // HOME PAGE ////////////////////
 server.get("/home", (req, res) => {
-  const pageBody = home();
+  const pageBody = home({}, {});
   res.send(pageBody);
 });
 
@@ -30,17 +30,18 @@ const errors = {};
 server.post("/home", bodyParser, (req, res) => {
   const haiku = sanitise(req.body.haiku);
   const poet = sanitise(req.body.poet);
-  const date = new Date();
-  const timeStamp = date.toLocaleString("en-GB");
+  const timeStamp = Date.now();
 
+  errors.haiku = "";
+  errors.poet = "";
 
   if (isValidData(haiku) && isValidData(poet)) {
     haikus.push({ haiku, poet, timeStamp });
-    res.redirect("/read");
+    res.redirect("/home");
   } else {
     if (!isValidData(haiku)) errors.haiku = "Field cannot be empty";
     if (!isValidData(poet)) errors.poet = "Field cannot be empty";
-    res.send(home(errors));
+    res.send(home(errors, { haiku, poet }));
   }
 });
 
