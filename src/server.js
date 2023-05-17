@@ -51,16 +51,11 @@ server.post("/home", bodyParser, (req, res) => {
 
 // DELETE A HAIKU /////////////
 
-server.delete("/delete/:id", (req, res) => {
+server.post("/delete/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const index = haikus.findIndex(haiku => haiku.id === id)
-  console.log(id, index);
   if (index !== -1) {
     haikus.splice(index,1);
-    res.status(200).send(`Haiku ${id} deleted!`)
-  }
-  else {
-    res.status(404).send(`Haiku ${id} not found`)
   }
   res.redirect("/read");
 })
