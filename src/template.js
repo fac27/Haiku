@@ -1,4 +1,4 @@
-function home(errors = {}) {
+function home(errors = {}, values = {}) {
   const title = "Haiku Board - submit";
   const content = /*HTML*/ `
   <header>
@@ -55,7 +55,6 @@ function home(errors = {}) {
   </main>
 `;
   return layout(title, content);
-  `;
 }
 
 function haikuBoard(haikus) {
