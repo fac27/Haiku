@@ -26,24 +26,45 @@ server.get("/read", (req, res) => {
 // SUBMIT A HAIKU /////////////
 const haikus = [];
 const errors = {};
+let count = 0;
 
 server.post("/home", bodyParser, (req, res) => {
   const haiku = sanitise(req.body.haiku);
   const poet = sanitise(req.body.poet);
-  const timeStamp = Date.now();
+  const date = new Date();
+  const timeStamp = date.toLocaleString("en-GB");
+  const id = count;
+  count += 1;
 
   errors.haiku = "";
   errors.poet = "";
 
   if (isValidData(haiku) && isValidData(poet)) {
-    haikus.push({ haiku, poet, timeStamp });
-    res.redirect("/home");
+    haikus.push({ haiku, poet, timeStamp, id });
+    res.redirect("/read");
   } else {
     if (!isValidData(haiku)) errors.haiku = "Field cannot be empty";
     if (!isValidData(poet)) errors.poet = "Field cannot be empty";
     res.send(home(errors, { haiku, poet }));
   }
 });
+
+// DELETE A HAIKU /////////////
+
+server.delete("/delete/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const index = haikus.findIndex(haiku => haiku.id === id)
+  console.log(id, index);
+  if (index !== -1) {
+    haikus.splice(index,1);
+    res.status(200).send(`Haiku ${id} deleted!`)
+  }
+  else {
+    res.status(404).send(`Haiku ${id} not found`)
+  }
+  res.redirect("/read");
+})
+
 
 // exports ////////////////////////
 //////////////////////////////////
