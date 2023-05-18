@@ -1,3 +1,6 @@
+const { sanitise } = require("../utils/sanitise.js")
+const { validation } = require("../utils/validate.js")
+
 function home(errors = {}, values = {}) {
   const title = "Haiku Board - submit";
   const content = /*HTML*/ `
@@ -28,7 +31,7 @@ function home(errors = {}, values = {}) {
           </p>
         </section>
         <section>
-          <form method="POST" action="/home">
+          <form method="POST" action="/">
             <label for="haiku">Enter your Haiku</label>
             <textarea 
               name="haiku"
@@ -78,7 +81,7 @@ function haikuBoard(haikus) {
             <section>
                 <h2>Feeling inspired?</h2>
                   <figure>
-                    <form action="/home" method="GET" ariahidden="true">
+                    <form action="/" method="GET" ariahidden="true">
                       <button type="submit" ariahidden="false" arialabel="Visit the haiku submission page">
                         <img
                         src="/assets/icon-write.png" 
@@ -108,27 +111,6 @@ function postHaiku(haikuPost) {
   `;
 }
 
-function isValidData(dataSubmitted) {
-  return dataSubmitted === "" ? false : true;
-}
-
-function validation(message) {
-  if (message) {
-    return `<span style="color: red">${message}</span>`;
-  } else {
-    return "";
-  }
-}
-
-function sanitise(dirtyData) {
-  let unsafeData = {
-    "<": "&lt;",
-    ">": "&gt;",
-  };
-
-  return dirtyData.replace(/<|>/g, (matched) => unsafeData[matched]);
-}
-
 function layout(title, content) {
   return /*html*/ `
 <html lang="en">
@@ -144,4 +126,4 @@ function layout(title, content) {
 `;
 }
 
-module.exports = { home, haikuBoard, isValidData, sanitise };
+module.exports = { home, haikuBoard };

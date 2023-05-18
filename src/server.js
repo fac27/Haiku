@@ -1,11 +1,14 @@
 const express = require("express");
-const { home, haikuBoard, isValidData, sanitise } = require("./template.js");
 const server = express();
 const bodyParser = express.urlencoded({ extended: true });
 server.use(express.static("public"));
 
-// routes //////////////////////////
-///////////////////////////////////
+const { home, haikuBoard } = require("./template.js");
+const { isValidData } = require("../utils/validate.js");
+const { sanitise } = require("../utils/sanitise.js");
+
+// ROUTES //////////////////////////
+
 
 // HOME PAGE ////////////////////
 
@@ -16,7 +19,7 @@ server.get("/", (req, res) => {
 
 // VIEW SUBMITIONS /////////////
 server.get("/read", (req, res) => {
-  const pageBody = haikuBoard(haikus); 
+  const pageBody = haikuBoard(haikus);
   res.send(pageBody);
 });
 
@@ -47,14 +50,13 @@ server.post("/home", bodyParser, (req, res) => {
 
 server.post("/delete/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const index = haikus.findIndex(haiku => haiku.id === id)
+  const index = haikus.findIndex((haiku) => haiku.id === id);
   if (index !== -1) {
-    haikus.splice(index,1);
+    haikus.splice(index, 1);
   }
   res.redirect("/read");
-})
+});
 
+// EXPORTS ////////////////////////
 
-// exports ////////////////////////
-//////////////////////////////////
 module.exports = server;
