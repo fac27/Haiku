@@ -5,6 +5,7 @@
 
 body {
   background-color: white;
+  padding: 3rem;
 }
 
 .header {
@@ -19,6 +20,7 @@ body {
 h1 {
   font-size: 1.7rem;
   text-align: center;
+  margin: 2rem;
 }
 
 h2 {
@@ -27,14 +29,16 @@ h2 {
 
 .button-container {
   margin-bottom: 0;
+  padding: 0;
 }
 
 /* GRID */
 
 .grid-container {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
   grid-template-rows: 1fr 2fr;
+  gap: 2rem;
 }
 
 .linkbox-read {
@@ -45,6 +49,7 @@ h2 {
 .infobox-haikus {
   grid-column: 1;
   grid-row: 1;
+  white-space: pre-line;
 }
 
 .haiku-form {
@@ -87,7 +92,7 @@ figure > figcaption {
   width: 12vmin;
   padding: 1vmin;
   position: relative;
-  border: 1px solid black;
+  border: 2px solid black;
   background-color: gainsboro;
   margin: auto;
   margin-top: 5vmin;
@@ -111,8 +116,10 @@ li > form > button {
 }
 
 .haiku {
-  width: 30%;
+  width: 80%;
   margin: auto;
+  margin-top: 0;
+  font-style: italic;
 }
 
 .delete-container {
@@ -142,12 +149,13 @@ form > label {
 }
 
 form > input {
+  padding: 0.5rem;
   height: 2rem;
   border: 1px solid black;
 }
 
 form > textarea {
-  padding: 0.7rem;
+  padding: 0.5rem;
   border: 1px solid black;
 }
 
@@ -188,4 +196,8 @@ textarea {
 .button:hover {
   background-color: rgb(72, 164, 72);
   box-shadow: 3px 1px 1px black;
+}
+
+.button:hover + .button-label {
+  font-weight: bold;
 }

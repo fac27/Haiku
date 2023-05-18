@@ -9,7 +9,6 @@ const { sanitise } = require("../utils/sanitise.js");
 
 // ROUTES //////////////////////////
 
-
 // HOME PAGE ////////////////////
 
 server.get("/", (req, res) => {
@@ -30,7 +29,6 @@ let count = 0;
 server.post("/post", bodyParser, (req, res) => {
   const errors = {};
   const haiku = sanitise(req.body.haiku);
-  console.log(haiku)
   const poet = sanitise(req.body.poet);
   const date = new Date();
   const timeStamp = date.toLocaleString("en-GB");
