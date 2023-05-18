@@ -59,8 +59,7 @@ test("/delete/:id request edits haikus array", async () => {
     method: "POST",
   });
     app.close();
-
-    // const result = await response.text()
+    
     assert.equal(haikus, '[]')
 
   })
