@@ -28,7 +28,7 @@ function home(errors = {}, values = {}) {
           </p>
         </section>
         <section>
-          <form method="POST" action="/home"> <!-- Add action attribute to the form -->
+          <form method="POST" action="/home">
             <label for="haiku">Enter your Haiku</label>
             <textarea 
               name="haiku"
