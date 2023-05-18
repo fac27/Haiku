@@ -4,20 +4,54 @@
 }
 
 body {
-  background-color: #eee;
+  background-color: white;
+  font-size: 1rem;
 }
 
-header {
+.header {
   height: 15vmin;
   width: 100%;
 }
 
-h1 {
+.hidden {
   display: none;
+}
+
+h1 {
+  font-size: 1.7rem;
+  text-align: center;
 }
 
 h2 {
   font-size: 1.5rem;
+}
+
+.button-container {
+  margin-bottom: 0;
+}
+
+/* GRID */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 2fr;
+}
+
+.linkbox-read {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.infobox-haikus {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.haiku-form {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row: 2;
 }
 
 header > img {
@@ -62,6 +96,11 @@ button > img {
   object-fit: cover;
 }
 
+li > form > button {
+  margin: inherit;
+  align-self: flex-end;
+}
+
 .text-general {
   text-align: justify;
   width: 80%;
@@ -70,6 +109,15 @@ button > img {
 .haiku {
   width: 30%;
   margin: auto;
+}
+
+.no-top-margin {
+  margin-top: 0;
+}
+
+.text-secondary {
+  color: rgb(130, 130, 130);
+  font-style: italic;
 }
 
 form {
@@ -87,6 +135,12 @@ form > label {
 
 form > input {
   height: 2rem;
+  border: 1px solid black;
+}
+
+form > textarea {
+  padding: 0.7rem;
+  border: 1px solid black;
 }
 
 form > button {
@@ -111,6 +165,12 @@ ul {
 li {
   font-size: 1.2rem;
   text-align: left;
+  list-style-type: none;
+}
+
+li > p {
+  white-space: pre-line;
+  line-height: 1.5rem;
 }
 
 * + li {
