@@ -8,13 +8,10 @@ server.use(express.static("public"));
 ///////////////////////////////////
 
 // HOME PAGE ////////////////////
-server.get("/home", (req, res) => {
-  const pageBody = home({}, {});
-  res.send(pageBody);
-});
 
 server.get("/", (req, res) => {
-  res.redirect("/home");
+  const pageBody = home({}, {});
+  res.send(pageBody);
 });
 
 // VIEW SUBMITIONS /////////////

@@ -5,7 +5,7 @@ const server = require("../src/server.js");
 const haikus = require("../src/server.js");
 
 
-test("GET '/home' takes user to the home page", async () => {
+test("GET '/' takes user to the home page", async () => {
   const app = server.listen(9876);
   const response = await fetch("http://localhost:9876");
   app.close();
