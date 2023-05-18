@@ -1,3 +1,6 @@
+const { sanitise } = require("../utils/sanitise.js")
+const { validation } = require("../utils/validate.js")
+
 function home(errors = {}, values = {}) {
   const title = "Haiku Board - submit";
   const content = /*HTML*/ `
@@ -24,10 +27,11 @@ function home(errors = {}, values = {}) {
   </figure>
 </section>
   <section class="haiku-form no-top-margin">
-          <form method="POST" action="/">
+          <form method="POST" action="/post">
             <label>Enter your Haiku</label>
             <textarea 
               name="haiku"
+              id="haiku"
               rows="4"
               cols="30"
               placeholder=
@@ -37,10 +41,11 @@ function home(errors = {}, values = {}) {
               a cricket, singing"
             >${values.haiku ? sanitise(values.haiku) : ""}</textarea>
             ${validation(errors.haiku)}
-            <label>Poet's name</label>
+            <label for="poet">Poet's name</label>
             <input 
               type="text" 
               name="poet"
+              id="poet"
               value="${values.poet ? sanitise(values.poet) : ""}"
             >
             ${validation(errors.poet)}
@@ -110,38 +115,19 @@ function postHaiku(haikuPost) {
   `;
 }
 
-function isValidData(dataSubmitted) {
-  return dataSubmitted === "" ? false : true;
-}
-
-function validation(message) {
-  if (message) {
-    return `<span style="color: red">${message}</span>`;
-  } else {
-    return "";
-  }
-}
-
-function sanitise(dirtyData) {
-  let unsafeData = {
-    "<": "&lt;",
-    ">": "&gt;",
-  };
-
-  return dirtyData.replace(/<|>/g, (matched) => unsafeData[matched]);
-}
-
 function layout(title, content) {
   return /*html*/ `
-<head>
-  <link rel="stylesheet" href="/styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${title}</title>
-</head>
-<body>
-${content}
-</body>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${title}</title>
+  </head>
+  <body>
+    ${content}
+  </body>
+</html>
 `;
 }
 
-module.exports = { home, haikuBoard, isValidData, sanitise };
+module.exports = { home, haikuBoard };

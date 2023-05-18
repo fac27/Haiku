@@ -1,6 +1,6 @@
 # Haiku
 
-An app to read and write haikus.
+An app to read and write haikus, [deployed here](https://haiku-blog.fly.dev/home).
 
 ## Install
 
@@ -20,15 +20,24 @@ Then to start a server, run:
 ```
 npm run dev
 ```
-and navigate to "http://localhost:8080/home" to view the site.
+and navigate to http://localhost:8080/home to view the site.
 
-## Usage
+Run all tests:
+```
+node --test
+```
 
-Insert screenshot
+## Known Issues
+
+"/delete/:id request edit haikus array" test is currently failing, though the delete button itself works.
+
+CSS document is undergoing restructuring along with applying bem naming conventions.
 
 ## Roadmap
 
-- Wireframe
+- Create a wireframe with [figma](https://www.figma.com/file/Kwn6biqOxgsyDgA0GO4s64/Microblogging-Wireframe?type=design&node-id=2-25&t=IFKBGgn8TwYbUgSZ-0)
+![Wireframe](/Haiku/img/wireframe1.png)
+![Wireframe](/Haiku/img/wireframe2.png)
 - Deployed to Fly.io
 - A page with a form to submit posts, and a page showing all posts
 - No .html files (all HTML responses should be created dynamically within Node)
@@ -45,9 +54,8 @@ Insert screenshot
 - As a bored person, I want to: read what other people have posted
 ### Stretch 
 - As an impulsive person, I want to: delete my posts so no one can see them anymore
-- Acceptance Criteria
 
 ## Acknowledgements
-- https://oliverjam.es/articles/deploying-to-fly
-- https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
+- [oliverjam.es](https://oliverjam.es/articles/deploying-to-fly)
+- [fly.io](https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/)
 

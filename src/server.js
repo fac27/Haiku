@@ -1,34 +1,34 @@
 const express = require("express");
-const { home, haikuBoard, isValidData, sanitise } = require("./template.js");
 const server = express();
 const bodyParser = express.urlencoded({ extended: true });
 server.use(express.static("public"));
 
-// routes //////////////////////////
-///////////////////////////////////
+const { home, haikuBoard } = require("./template.js");
+const { isValidData } = require("../utils/validate.js");
+const { sanitise } = require("../utils/sanitise.js");
+
+// ROUTES //////////////////////////
+
 
 // HOME PAGE ////////////////////
-server.get("/home", (req, res) => {
+
+server.get("/", (req, res) => {
   const pageBody = home({}, {});
   res.send(pageBody);
 });
 
-server.get("/", (req, res) => {
-  res.redirect("/home");
-});
-
 // VIEW SUBMITIONS /////////////
 server.get("/read", (req, res) => {
-  const pageBody = haikuBoard(haikus); //replace with a callback to templates.js
+  const pageBody = haikuBoard(haikus);
   res.send(pageBody);
 });
 
 // SUBMIT A HAIKU /////////////
 const haikus = [];
-const errors = {};
 let count = 0;
 
-server.post("/home", bodyParser, (req, res) => {
+server.post("/post", bodyParser, (req, res) => {
+  const errors = {};
   const haiku = sanitise(req.body.haiku);
   console.log(haiku)
   const poet = sanitise(req.body.poet);
@@ -36,9 +36,6 @@ server.post("/home", bodyParser, (req, res) => {
   const timeStamp = date.toLocaleString("en-GB");
   const id = count;
   count += 1;
-
-  errors.haiku = "";
-  errors.poet = "";
 
   if (isValidData(haiku) && isValidData(poet)) {
     haikus.push({ haiku, poet, timeStamp, id });
@@ -54,14 +51,13 @@ server.post("/home", bodyParser, (req, res) => {
 
 server.post("/delete/:id", (req, res) => {
   const id = parseInt(req.params.id);
-  const index = haikus.findIndex(haiku => haiku.id === id)
+  const index = haikus.findIndex((haiku) => haiku.id === id);
   if (index !== -1) {
-    haikus.splice(index,1);
+    haikus.splice(index, 1);
   }
   res.redirect("/read");
-})
+});
 
+// EXPORTS ////////////////////////
 
-// exports ////////////////////////
-//////////////////////////////////
 module.exports = server;
