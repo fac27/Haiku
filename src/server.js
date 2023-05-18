@@ -27,7 +27,7 @@ server.get("/read", (req, res) => {
 const haikus = [];
 let count = 0;
 
-server.post("/home", bodyParser, (req, res) => {
+server.post("/post", bodyParser, (req, res) => {
   const errors = {};
   const haiku = sanitise(req.body.haiku);
   const poet = sanitise(req.body.poet);
