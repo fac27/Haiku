@@ -52,9 +52,8 @@ CSS document is undergoing restructuring along with applying bem naming conventi
 - As a bored person, I want to: read what other people have posted
 ### Stretch 
 - As an impulsive person, I want to: delete my posts so no one can see them anymore
-- Acceptance Criteria
 
 ## Acknowledgements
-- https://oliverjam.es/articles/deploying-to-fly
-- https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
+- [oliverjam.es](https://oliverjam.es/articles/deploying-to-fly)
+- [fly.io](https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/)
 
