@@ -4,7 +4,7 @@ const bodyParser = express.urlencoded({ extended: true });
 server.use(express.static("public"));
 
 const { home, haikuBoard } = require("./template.js");
-const isValidData = require("../utils/sanitise.js");
+const isValidData = require("../utils/validate.js");
 const sanitise = require("../utils/sanitise.js");
 
 // ROUTES //////////////////////////
