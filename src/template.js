@@ -13,18 +13,18 @@ function home(errors = {}, values = {}) {
   <figure>
   <p class="text-secondary">Looking for inspiration?</p>
     <form action="/read" method="GET" class="button-container">
-      <button type="submit">
+      <button type="submit" class="button">
         <img 
         src="/assets/icon-read.png" 
         alt="An icon showing a poetry book"
         />
       </button>
     </form>
-    <figcaption class="no-top-margin">Read haikus</figcaption>
+    <figcaption class="button-label">Read haikus</figcaption>
   </figure>
 </section>
   <section class="haiku-form no-top-margin">
-          <form method="POST" action="/home"> <!-- Add action attribute to the form -->
+          <form method="POST" action="/">
             <label>Enter your Haiku</label>
             <textarea 
               name="haiku"
@@ -44,13 +44,16 @@ function home(errors = {}, values = {}) {
               value="${values.poet ? sanitise(values.poet) : ""}"
             >
             ${validation(errors.poet)}
-            <button type="submit" class="button button-circle">
-              <img 
-                src="/assets/icon-submit.png" 
-                alt="An icon showing a writing being submitted" 
-                class="icon-button"
-              >
-          </button>
+            <figure>
+              <button type="submit" class="button">
+                <img 
+                  src="/assets/icon-submit.png" 
+                  alt="An icon showing a writing being submitted" 
+                  class="icon-button"
+                >
+              </button>
+              <figcaption class="button-label">Submit haiku</figcaption>
+            </figure>
         </form>
       </section>
   </main>
@@ -63,7 +66,7 @@ function haikuBoard(haikus) {
   const content = /*HTML*/ `
   <body>
   <link rel="stylesheet" href="/styles.css">
-    <header>
+    <header class="header">
       <img src="/assets/logo-demo.JPG" alt="A logo which says Haiku Daily" class="logo-header"> 
       <h1 class="heading-main hidden">Haiku board</h1>
   </header>
@@ -77,15 +80,15 @@ function haikuBoard(haikus) {
             <section>
                 <h2>Feeling inspired?</h2>
                   <figure>
-                    <form action="/home" method="GET">
-                      <button type="submit">
+                    <form action="/" method="GET">
+                      <button type="submit" class="button">
                         <img
                         src="/assets/icon-write.png" 
                         alt="An icon showing a poem being written"
                         />
                       </button>
                     </form>
-                    <figcaption>Write a haiku</figcaption>
+                    <figcaption class="button-label">Write a haiku</figcaption>
                   </figure>
               </section>
     </main>
@@ -97,7 +100,7 @@ function haikuBoard(haikus) {
 function postHaiku(haikuPost) {
   return /*HTML*/ `
   <li>
-    <form method="POST" action="/delete/${haikuPost.id}">
+    <form method="POST" action="/delete/${haikuPost.id}" class="delete-container">
     <button>X</button>
     </form>
     <p>${haikuPost.haiku}</p>
