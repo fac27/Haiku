@@ -31,7 +31,7 @@ function home(errors = {}, values = {}) {
           </p>
         </section>
         <section>
-          <form method="POST" action="/">
+          <form method="POST" action="/post">
             <label for="haiku">Enter your Haiku</label>
             <textarea 
               name="haiku"
