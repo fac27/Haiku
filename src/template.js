@@ -1,3 +1,6 @@
+const sanitise = require("../utils/sanitise")
+const validation = require("../utils/validate")
+
 function home(errors = {}, values = {}) {
   const title = "Haiku Board - submit";
   const content = /*HTML*/ `
@@ -108,27 +111,6 @@ function postHaiku(haikuPost) {
   `;
 }
 
-function isValidData(dataSubmitted) {
-  return dataSubmitted === "" ? false : true;
-}
-
-function validation(message) {
-  if (message) {
-    return `<span style="color: red">${message}</span>`;
-  } else {
-    return "";
-  }
-}
-
-function sanitise(dirtyData) {
-  let unsafeData = {
-    "<": "&lt;",
-    ">": "&gt;",
-  };
-
-  return dirtyData.replace(/<|>/g, (matched) => unsafeData[matched]);
-}
-
 function layout(title, content) {
   return /*html*/ `
 <html lang="en">
@@ -144,4 +126,4 @@ function layout(title, content) {
 `;
 }
 
-module.exports = { home, haikuBoard, isValidData, sanitise };
+module.exports = { home, haikuBoard };
