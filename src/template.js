@@ -4,40 +4,41 @@ const { validation } = require("../utils/validate.js")
 function home(errors = {}, values = {}) {
   const title = "Haiku Board - submit";
   const content = /*HTML*/ `
-  <header>
-      <img src="/assets/logo-demo.JPG" alt="A logo which says Haiku Daily" class="logo-header"> 
-      <h1 class="heading-main hidden">Haiku board</h1>
+  <header class="header">
+      <img src="/assets/logo-demo.JPG" alt="A logo which says Haiku Daily" class="header--logo"> 
   </header>
+  <h1>Post a Haiku</h1>
   <main class="grid-container">
-      <section class="linkbox-read">
-        <h2>Looking for inspiration?</h2>
-          <figure>
-            <form action="/read" method="GET" ariahidden="true">
-              <button type="submit" ariahidden="false" arialabel="Read submitted haikus">
-                <img 
-                src="/assets/icon-read.png" 
-                alt="An icon showing a poetry book"
-                />
-              </button>
-            </form>
-            <figcaption>Read haikus</figcaption>
-          </figure>
-        </section>
-        <section class="infobox-haikus">
-          <p class="text-general">A haiku is a Japanese verse form most often composed, in English versions, of three unrhymed lines of five, seven, and five syllables. It often features an image, or a pair of images, meant to depict the essence of a specific moment in time.</p>
-          <p class="text-general haiku"> On a bobbing branch <br>
-            floating slowly downriver <br>
-            a cricket, singing.
-          </p>
-        </section>
-        <section>
+  <section class="infobox-haikus">
+  <p class="text-general">A haiku is a three-line, unrhymed Japanese poem with a 5-7-5 syllable pattern, often using imagery to capture a specific moment in time.</p>
+</section>
+  <section class="linkbox-read no-top-margin">
+  <figure>
+  <p class="text-secondary">Looking for inspiration?</p>
+    <form action="/read" method="GET" class="button-container">
+      <button type="submit" class="button">
+        <img 
+        src="/assets/icon-read.png" 
+        alt="An icon showing a poetry book"
+        />
+      </button>
+    </form>
+    <figcaption class="button-label">Read haikus</figcaption>
+  </figure>
+</section>
+  <section class="haiku-form no-top-margin">
           <form method="POST" action="/post">
-            <label for="haiku">Enter your Haiku</label>
+            <label>Enter your Haiku</label>
             <textarea 
               name="haiku"
               id="haiku"
               rows="4"
               cols="30"
+              placeholder=
+              " 
+              On a bobbing branch 
+              floating slowly downriver 
+              a cricket, singing"
             >${values.haiku ? sanitise(values.haiku) : ""}</textarea>
             ${validation(errors.haiku)}
             <label for="poet">Poet's name</label>
@@ -48,13 +49,16 @@ function home(errors = {}, values = {}) {
               value="${values.poet ? sanitise(values.poet) : ""}"
             >
             ${validation(errors.poet)}
-            <button type="submit" class="button-circle" arialabel="Submit your haiku">
-              <img 
-                src="/assets/icon-submit.png" 
-                alt="An icon showing a writing being submitted" 
-                class="icon-button"
-              >
-          </button>
+            <figure>
+              <button type="submit" class="button">
+                <img 
+                  src="/assets/icon-submit.png" 
+                  alt="An icon showing a writing being submitted" 
+                  class="icon-button"
+                >
+              </button>
+              <figcaption class="button-label">Submit haiku</figcaption>
+            </figure>
         </form>
       </section>
   </main>
@@ -67,7 +71,7 @@ function haikuBoard(haikus) {
   const content = /*HTML*/ `
   <body>
   <link rel="stylesheet" href="/styles.css">
-    <header>
+    <header class="header">
       <img src="/assets/logo-demo.JPG" alt="A logo which says Haiku Daily" class="logo-header"> 
       <h1 class="heading-main hidden">Haiku board</h1>
   </header>
@@ -81,15 +85,15 @@ function haikuBoard(haikus) {
             <section>
                 <h2>Feeling inspired?</h2>
                   <figure>
-                    <form action="/" method="GET" ariahidden="true">
-                      <button type="submit" ariahidden="false" arialabel="Visit the haiku submission page">
+                    <form action="/" method="GET">
+                      <button type="submit" class="button">
                         <img
                         src="/assets/icon-write.png" 
                         alt="An icon showing a poem being written"
                         />
                       </button>
                     </form>
-                    <figcaption>Write a haiku</figcaption>
+                    <figcaption class="button-label">Write a haiku</figcaption>
                   </figure>
               </section>
     </main>
@@ -101,7 +105,7 @@ function haikuBoard(haikus) {
 function postHaiku(haikuPost) {
   return /*HTML*/ `
   <li>
-    <form method="POST" action="/delete/${haikuPost.id}">
+    <form method="POST" action="/delete/${haikuPost.id}" class="delete-container">
     <button>X</button>
     </form>
     <p>${haikuPost.haiku}</p>
