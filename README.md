@@ -4,7 +4,7 @@ An app to read and write haikus, [deployed here](https://haiku-blog.fly.dev/home
 
 ## Install
 
-This project uses Node, npm and Express. Check you have them installed:
+This project was built with Node@18, npm and Express. Check you have the correct versions installed:
 
 ```
 node --version
